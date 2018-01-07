@@ -9,7 +9,7 @@ window.onload = (ev) => {
       }
     }
 
-    req.open("GET", "http://localhost:3000/random-number", true);
+    req.open("GET", "/random-number", true);
     req.send(null);
 
     var displayMyRandomNumber = (responseText) => {

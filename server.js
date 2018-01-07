@@ -23,8 +23,9 @@ app.get('/random-number', (req, res) => {
   var randomNumber = { value: Math.round(Math.random()*10000) }
   try
   {
-    MongoClient.connect('mongodb://localhost:27017', function (err, database) {
+    MongoClient.connect('mongodb://db:27017', function (err, database) {
       if (err) throw err
+      console.log("I connected to the database")
       database.db("randomNumbers").collection("requests").insertOne(
         { generatedObject: randomNumber, dateIn: new Date().toISOString() })
     })
@@ -36,4 +37,6 @@ app.get('/random-number', (req, res) => {
   res.send(randomNumber)
 })
 
-app.listen(3000, () => console.log('Server running: http://localhost:3000/'))
+const PORT = 8080;
+
+app.listen(PORT, () => console.log('Server running: http://localhost:8080/'))
